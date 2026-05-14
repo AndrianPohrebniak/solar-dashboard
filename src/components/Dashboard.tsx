@@ -33,6 +33,8 @@ export const Dashboard: React.FC = () => {
         keepalive: 60,
         reconnectPeriod: 1000,
         connectTimeout: 30 * 1000,
+        username: import.meta.env.VITE_MQTT_USERNAME,
+        password: import.meta.env.VITE_MQTT_PASSWORD,
       });
 
       client.on('connect', () => {
@@ -59,10 +61,10 @@ export const Dashboard: React.FC = () => {
               current: rawData.i ?? 0,
               power: rawData.p ?? 0,
               ldr: {
-                tl: rawData.tl ?? 0,
-                tr: rawData.tr ?? 0,
-                bl: rawData.dl ?? 0, // mapping down-left to bottom-left
-                br: rawData.dr ?? 0, // mapping down-right to bottom-right
+                tl: Math.max(0, 4095 - (rawData.tl ?? 4095)),
+                tr: Math.max(0, 4095 - (rawData.tr ?? 4095)),
+                bl: Math.max(0, 4095 - (rawData.dl ?? 4095)), // mapping down-left to bottom-left
+                br: Math.max(0, 4095 - (rawData.dr ?? 4095)), // mapping down-right to bottom-right
               },
               angles: {
                 pan: rawData.pan ?? 0,

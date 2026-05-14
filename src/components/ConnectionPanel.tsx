@@ -10,8 +10,8 @@ interface ConnectionPanelProps {
 }
 
 export const ConnectionPanel: React.FC<ConnectionPanelProps> = ({ status, onConnect, onDisconnect }) => {
-  const [broker, setBroker] = useState('ws://192.168.0.xxx:9001');
-  const [topic, setTopic] = useState('andrian_diploma_2026/tracker/telemetry');
+  const [broker, setBroker] = useState(import.meta.env.VITE_MQTT_BROKER || 'wss://34d4937c7a8f4488b256bc82e49d4a96.s1.eu.hivemq.cloud:8884/mqtt');
+  const [topic, setTopic] = useState(import.meta.env.VITE_MQTT_TOPIC || 'andrian_diploma_2026/tracker/telemetry');
 
   const handleConnect = (e: React.FormEvent) => {
     e.preventDefault();
