@@ -55,10 +55,10 @@ export const RealTimeCharts: React.FC<RealTimeChartsProps> = ({ data }) => {
               <YAxis domain={[0, 6]} stroke="#64748b" fontSize={10} tickFormatter={(val) => `${val}V`} />
               <Tooltip content={<CustomTooltip />} />
               <ReferenceLine y={5} stroke="#ef4444" strokeDasharray="3 3" strokeOpacity={0.5} />
-              <Line 
-                type="monotone" 
-                dataKey="voltage" 
-                stroke="#f59e0b" 
+              <Line
+                type="monotone"
+                dataKey="voltage"
+                stroke="#f59e0b"
                 strokeWidth={3}
                 dot={false}
                 isAnimationActive={false}
@@ -94,12 +94,12 @@ export const RealTimeCharts: React.FC<RealTimeChartsProps> = ({ data }) => {
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
               <XAxis dataKey="time" stroke="#64748b" fontSize={10} tickMargin={8} />
-              <YAxis domain={[0, 500]} stroke="#64748b" fontSize={10} tickFormatter={(val) => `${val}`} />
+              <YAxis domain={[0, 'auto']} stroke="#64748b" fontSize={10} tickFormatter={(val) => `${val}`} />
               <Tooltip content={<CustomTooltip />} />
-              <Line 
-                type="monotone" 
-                dataKey="current" 
-                stroke="#0891b2" 
+              <Line
+                type="monotone"
+                dataKey="current"
+                stroke="#0891b2"
                 strokeWidth={3}
                 dot={false}
                 isAnimationActive={false}
@@ -135,12 +135,12 @@ export const RealTimeCharts: React.FC<RealTimeChartsProps> = ({ data }) => {
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
               <XAxis dataKey="time" stroke="#64748b" fontSize={10} tickMargin={8} />
-              <YAxis domain={[0, 3000]} stroke="#64748b" fontSize={10} tickFormatter={(val) => `${val}`} />
+              <YAxis domain={[0, 'auto']} stroke="#64748b" fontSize={10} tickFormatter={(val) => `${val}`} />
               <Tooltip content={<CustomTooltip />} />
-              <Line 
-                type="monotone" 
-                dataKey="power" 
-                stroke="#059669" 
+              <Line
+                type="monotone"
+                dataKey="power"
+                stroke="#059669"
                 strokeWidth={3}
                 dot={false}
                 isAnimationActive={false}

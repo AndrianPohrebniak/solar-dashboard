@@ -27,7 +27,7 @@ export const Dashboard: React.FC = () => {
     }
 
     setStatus('Connecting');
-    
+
     try {
       const client = mqtt.connect(broker, {
         keepalive: 60,
@@ -53,7 +53,7 @@ export const Dashboard: React.FC = () => {
         if (receivedTopic === topic) {
           try {
             const rawData = JSON.parse(message.toString());
-            
+
             // Map the flat JSON structure from the real device:
             // {"pan":10.00,"tilt":75.00,"tl":1161,"tr":1502,"dl":832,"dr":933,"v":0.69,"i":0.00,"p":0.00}
             const parsedData: TelemetryData = {
@@ -73,7 +73,7 @@ export const Dashboard: React.FC = () => {
             };
 
             setCurrentData(parsedData);
-            
+
             setHistory(prev => {
               const newHistory = [...prev, { ...parsedData, time: getTimeString() }];
               if (newHistory.length > 20) {
@@ -129,7 +129,7 @@ export const Dashboard: React.FC = () => {
   return (
     <div className="min-h-screen bg-slate-50 p-4 md:p-8 font-sans">
       <div className="max-w-7xl mx-auto">
-        
+
         <header className="mb-8 flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-emerald-500 to-cyan-500">
@@ -137,7 +137,7 @@ export const Dashboard: React.FC = () => {
             </h1>
             <p className="text-slate-500 mt-2 text-sm">Real-time IoT Monitoring Dashboard</p>
           </div>
-          
+
           <div className="hidden md:flex items-center gap-3">
             <div className="flex flex-col items-end">
               <span className="text-xs text-slate-500 uppercase tracking-wider font-semibold">System Status</span>
@@ -149,10 +149,10 @@ export const Dashboard: React.FC = () => {
           </div>
         </header>
 
-        <ConnectionPanel 
-          status={status} 
-          onConnect={handleConnect} 
-          onDisconnect={handleDisconnect} 
+        <ConnectionPanel
+          status={status}
+          onConnect={handleConnect}
+          onDisconnect={handleDisconnect}
         />
 
         {hasData ? (
@@ -169,8 +169,8 @@ export const Dashboard: React.FC = () => {
             </div>
             <h3 className="text-xl font-medium text-slate-700 mb-2">НЕМАЄ ДАНИХ (NO DATA)</h3>
             <p className="text-slate-500 max-w-md text-center">
-              {status === 'Connected' 
-                ? 'Waiting for incoming telemetry on the subscribed topic...' 
+              {status === 'Connected'
+                ? 'Waiting for incoming telemetry on the subscribed topic...'
                 : 'Connect to the MQTT broker to start receiving real-time data.'}
             </p>
           </div>
