@@ -28,25 +28,25 @@ export const ConnectionPanel: React.FC<ConnectionPanelProps> = ({ status, onConn
   return (
     <div className="bg-white/80 border border-slate-200 rounded-xl p-4 shadow-sm backdrop-blur-sm mb-6">
       <form onSubmit={handleConnect} className="flex flex-col md:flex-row items-end md:items-center gap-4">
-        
+
         <div className="flex-1 w-full flex flex-col md:flex-row gap-4">
           <div className="flex-1">
             <label className="block text-xs text-slate-500 mb-1 font-medium tracking-wide uppercase">MQTT Broker URL</label>
-            <input 
-              type="text" 
+            <input
+              type="text"
               value={broker}
               onChange={(e) => setBroker(e.target.value)}
-              disabled={isConnected || isConnecting}
+              disabled={true}
               className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-700 focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-colors disabled:opacity-50"
             />
           </div>
           <div className="flex-1">
             <label className="block text-xs text-slate-500 mb-1 font-medium tracking-wide uppercase">Topic</label>
-            <input 
-              type="text" 
+            <input
+              type="text"
               value={topic}
               onChange={(e) => setTopic(e.target.value)}
-              disabled={isConnected || isConnecting}
+              disabled={true}
               className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-700 focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition-colors disabled:opacity-50"
             />
           </div>
@@ -56,9 +56,9 @@ export const ConnectionPanel: React.FC<ConnectionPanelProps> = ({ status, onConn
           <div className={cn(
             "flex items-center gap-2 px-3 py-2 rounded-lg border text-sm font-medium transition-colors w-full md:w-auto justify-center",
             status === 'Connected' ? "bg-emerald-50 border-emerald-200 text-emerald-600 shadow-[0_0_10px_rgba(16,185,129,0.2)]" :
-            status === 'Connecting' ? "bg-amber-50 border-amber-200 text-amber-600" :
-            status === 'Error' ? "bg-rose-50 border-rose-200 text-rose-600" :
-            "bg-slate-50 border-slate-200 text-slate-500"
+              status === 'Connecting' ? "bg-amber-50 border-amber-200 text-amber-600" :
+                status === 'Error' ? "bg-rose-50 border-rose-200 text-rose-600" :
+                  "bg-slate-50 border-slate-200 text-slate-500"
           )}>
             {status === 'Connected' && <Wifi className="w-4 h-4 animate-pulse" />}
             {status === 'Connecting' && <Wifi className="w-4 h-4 animate-pulse opacity-50" />}
